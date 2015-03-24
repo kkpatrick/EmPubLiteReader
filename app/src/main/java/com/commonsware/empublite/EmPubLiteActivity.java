@@ -3,6 +3,7 @@ package com.commonsware.empublite;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,13 +19,15 @@ public class EmPubLiteActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
 
+        setupStrictMode();
+
+        setContentView(R.layout.main);
         pager = (ViewPager)findViewById(R.id.pager);
-        //adapter = new ContentsAdapter(this);
-        pager.setAdapter(adapter);
-        findViewById(R.id.progressBar1).setVisibility(View.GONE);
-        pager.setVisibility(View.VISIBLE);
+        findViewById(R.id.progressBar1).setVisibility(View.VISIBLE);
+        pager.setVisibility(View.GONE);
+
+        getActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class EmPubLiteActivity extends Activity {
                 startActivity(intentHelp);
                 return true;
             case android.R.id.home:
+                pager.setCurrentItem(0, false);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -85,5 +89,16 @@ public class EmPubLiteActivity extends Activity {
 
     public void onEventMainThread(BookLoadedEvent event) {
         setupPager(event.getBook());
+    }
+
+    private void setupStrictMode() {
+        StrictMode.ThreadPolicy.Builder builder = new StrictMode.ThreadPolicy.Builder().detectNetwork();
+        if(BuildConfig.DEBUG) {
+            builder.penaltyDeath();
+        }
+        else {
+            builder.penaltyLog();
+        }
+        StrictMode.setThreadPolicy(builder.build());
     }
 }
