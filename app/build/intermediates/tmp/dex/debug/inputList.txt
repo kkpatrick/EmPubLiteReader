@@ -1,0 +1,9 @@
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/classes/debug
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-a2f98ddc14164254fd2a0e23a31c42f2cfeb08de.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-fa100554894d48afbb0ad0851f92cc333d0a6051.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/classes-183276f19574e00b2cbb6b7bd10ad9caa65aab20.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/eventbus-2.4.0-bf31881a0b2d712a6222d4b1be341bcca88c4ee9.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/retrofit-1.8.0-a8049fa7531e21fcaccde1f23c94448a099ea172.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-fe42c182d71a500a52385d8b53d5214e79f3a1da.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/gson-2.3.1-05169a7390c9f0e66586231a8e3df71f084cad47.jar
+/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/classes-7c88738289581dc66eef3726be999e48efb012a4.jar
