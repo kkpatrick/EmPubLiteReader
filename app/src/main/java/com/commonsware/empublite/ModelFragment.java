@@ -2,9 +2,12 @@ package com.commonsware.empublite;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Process;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -21,6 +24,7 @@ import de.greenrobot.event.EventBus;
  */
 public class ModelFragment extends Fragment {
     private BookContents contents = null;
+    private SharedPreferences prefs = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class ModelFragment extends Fragment {
         super.onAttach(activity);
 
         if(contents == null) {
-            new LoadThread(activity.getAssets()).start();
+            new LoadThread(activity).start();
         }
     }
 
@@ -43,20 +47,19 @@ public class ModelFragment extends Fragment {
     }
 
     private class LoadThread extends Thread {
-        private AssetManager assets = null;
-
-        LoadThread(AssetManager assets) {
+        private Context ctxt = null;
+        LoadThread(Context ctxt) {
             super();
-            this.assets = assets;
+            this.ctxt = ctxt.getApplicationContext();
             Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         }
 
         @Override
         public void run() {
             Gson gson = new Gson();
-
+            prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);
             try {
-                InputStream is = assets.open("book/contents.json");
+                InputStream is = ctxt.getAssets().open("book/contents.json");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 contents = gson.fromJson(reader, BookContents.class);
                 EventBus.getDefault().post(new BookLoadedEvent(contents));
@@ -66,5 +69,7 @@ public class ModelFragment extends Fragment {
         }
     }
 
-
+    public SharedPreferences getPrefs() {
+        return prefs;
+    }
 }

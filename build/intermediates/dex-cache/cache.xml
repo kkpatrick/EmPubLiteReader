@@ -6,56 +6,56 @@
         jumboMode="false"
         revision="21.1.2"
         sha1="a517f29ed06be2b2879524fcd94b6e9b36e2e0b5">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/retrofit-1.8.0-a8049fa7531e21fcaccde1f23c94448a099ea172.jar" />
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/retrofit-1.8.0-a8049fa7531e21fcaccde1f23c94448a099ea172.jar" />
     </item>
     <item
         jar="/Users/abc/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/gson-2.3.1-05169a7390c9f0e66586231a8e3df71f084cad47.jar" />
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/gson-2.3.1-05169a7390c9f0e66586231a8e3df71f084cad47.jar" />
     </item>
     <item
-        jar="/Users/abc/Downloads/EmPubLite/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-fe42c182d71a500a52385d8b53d5214e79f3a1da.jar" />
-    </item>
-    <item
-        jar="/Users/abc/.gradle/caches/modules-2/files-2.1/de.greenrobot/eventbus/2.4.0/ddd166d01b3158d1c00576d29f7ed15c030df719/eventbus-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="ddd166d01b3158d1c00576d29f7ed15c030df719">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/eventbus-2.4.0-bf31881a0b2d712a6222d4b1be341bcca88c4ee9.jar" />
-    </item>
-    <item
-        jar="/Users/abc/Downloads/EmPubLite/app/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="0dcc55e70f7ebf7238fe2ec53f662eb378ab2668">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-a2f98ddc14164254fd2a0e23a31c42f2cfeb08de.jar" />
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-9c64715a3e9161e7295173f6fa4e84639d02c601.jar" />
     </item>
     <item
-        jar="/Users/abc/Downloads/EmPubLite/app/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.3/classes.jar"
+        jar="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-f1d7910c239f4019a3a6a1c1fcdb40ac34d7ac24.jar" />
+    </item>
+    <item
+        jar="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c2071dcaf7a008c3b01a6381a33be55396bab09">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/classes-183276f19574e00b2cbb6b7bd10ad9caa65aab20.jar" />
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/classes-f719d1bb40ce2eb903ab62828cc21347b87f8c8b.jar" />
     </item>
     <item
         jar="/Applications/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-fa100554894d48afbb0ad0851f92cc333d0a6051.jar" />
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-fa100554894d48afbb0ad0851f92cc333d0a6051.jar" />
     </item>
     <item
-        jar="/Users/abc/Downloads/EmPubLite/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/abc/Downloads/EmPubLite/app/build/intermediates/pre-dexed/debug/classes-7c88738289581dc66eef3726be999e48efb012a4.jar" />
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/classes-a97dcc2d4d954b901c02a2ca9a339db0004d5bf3.jar" />
+    </item>
+    <item
+        jar="/Users/abc/.gradle/caches/modules-2/files-2.1/de.greenrobot/eventbus/2.4.0/ddd166d01b3158d1c00576d29f7ed15c030df719/eventbus-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ddd166d01b3158d1c00576d29f7ed15c030df719">
+        <dex dex="/Users/abc/Documents/AndroidExamplePrj/AndroidStudioPrj/EmPubLiteReader/app/build/intermediates/pre-dexed/debug/eventbus-2.4.0-bf31881a0b2d712a6222d4b1be341bcca88c4ee9.jar" />
     </item>
 
 </items>
