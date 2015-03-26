@@ -26,6 +26,7 @@
             android:name=".SimpleContentActivity"
             android:label="@string/title_activity_simple_content" >
         </activity>
+        <activity android:name="Preferences"></activity>
     </application>
 
 </manifest>
