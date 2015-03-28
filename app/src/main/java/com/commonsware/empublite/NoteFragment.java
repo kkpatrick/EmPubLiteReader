@@ -1,0 +1,64 @@
+package com.commonsware.empublite;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+
+import de.greenrobot.event.EventBus;
+
+/**
+ * Created by abc on 3/27/15.
+ */
+public class NoteFragment extends Fragment {
+    private static final String KEY_POSITION = "position";
+    private EditText editor = null;
+
+    static NoteFragment newInstance(int position) {
+        NoteFragment frag = new NoteFragment();
+        Bundle args = new Bundle();
+
+        args.putInt(KEY_POSITION, position);
+        frag.setArguments(args);
+
+        return frag;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View result = inflater.inflate(R.layout.editor, container, false);
+        editor = (EditText)result.findViewById(R.id.editor);
+        return result;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+        if(TextUtils.isEmpty(editor.getText())) {
+            DatabaseHelper db = DatabaseHelper.getInstance(getActivity());
+            db.loadNote(getPosition());
+        }
+    }
+
+    @Override
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    private int getPosition() {
+        return getArguments().getInt(KEY_POSITION, -1);
+    }
+
+    public void onEventMainThread(NoteLoadedEvent event) {
+        if(event.getPosition() == getPosition()) {
+            editor.setText(event.getProse());
+        }
+    }
+}
