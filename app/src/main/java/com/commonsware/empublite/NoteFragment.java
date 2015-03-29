@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -18,6 +21,10 @@ public class NoteFragment extends Fragment {
     private static final String KEY_POSITION = "position";
     private EditText editor = null;
 
+    public interface Contract {
+        void closeNotes();
+    }
+
     static NoteFragment newInstance(int position) {
         NoteFragment frag = new NoteFragment();
         Bundle args = new Bundle();
@@ -26,6 +33,12 @@ public class NoteFragment extends Fragment {
         frag.setArguments(args);
 
         return frag;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -48,8 +61,25 @@ public class NoteFragment extends Fragment {
 
     @Override
     public void onPause() {
+        DatabaseHelper.getInstance(getActivity()).updateNote(getPosition(), editor.getText().toString());
         EventBus.getDefault().unregister(this);
         super.onPause();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.notes, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.delete) {
+            editor.setText(null);
+            getContract().closeNotes();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private int getPosition() {
@@ -60,5 +90,9 @@ public class NoteFragment extends Fragment {
         if(event.getPosition() == getPosition()) {
             editor.setText(event.getProse());
         }
+    }
+
+    private Contract getContract() {
+        return (Contract)getActivity();
     }
 }

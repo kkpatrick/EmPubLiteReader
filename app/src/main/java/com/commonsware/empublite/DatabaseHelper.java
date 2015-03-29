@@ -41,6 +41,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         new LoadThread(position).start();
     }
 
+    public void updateNote(int position, String prose) {
+        new UpdateThread(position, prose).start();
+    }
+
     private class LoadThread extends Thread {
         private int position = -1;
         LoadThread(int position) {
@@ -58,6 +62,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 EventBus.getDefault().post(new NoteLoadedEvent(position, c.getString(0)));
             }
             c.close();
+        }
+    }
+
+    private class UpdateThread extends Thread {
+        private int position = -1;
+        private String prose = null;
+
+        UpdateThread(int position, String prose) {
+            super();
+            this.position = position;
+            this.prose = prose;
+            Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+        }
+
+        @Override
+        public void run() {
+            String[] args = { String.valueOf(position), prose};
+
+            getWritableDatabase().execSQL("INSERT OR REPLACE INTO notes (position, prose) VALUES (?, ?)", args);
         }
     }
 }
