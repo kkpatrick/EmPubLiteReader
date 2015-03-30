@@ -68,6 +68,9 @@ public class EmPubLiteActivity extends Activity {
                 noteActivity.putExtra(NoteActivity.EXTRA_POSITION, pager.getCurrentItem());
                 startActivity(noteActivity);
                 return true;
+            case R.id.update:
+                startService(new Intent(this, DownloadCheckService.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
