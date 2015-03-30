@@ -26,8 +26,13 @@
             android:name=".SimpleContentActivity"
             android:label="@string/title_activity_simple_content" >
         </activity>
-        <activity android:name="Preferences"></activity>
-        <activity android:name=".NoteActivity"></activity>
+        <activity android:name=".Preferences" />
+        <activity android:name=".NoteActivity" />
+
+        <service
+            android:name=".DownloadCheckService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
