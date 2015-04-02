@@ -13,6 +13,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -37,6 +39,8 @@ public class ModelFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
+        EventBus.getDefault().register(this);
+
         if(contents == null) {
             new LoadThread(activity).start();
         }
@@ -56,12 +60,25 @@ public class ModelFragment extends Fragment {
 
         @Override
         public void run() {
-            Gson gson = new Gson();
             prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);
+            Gson gson = new Gson();
+            File baseDir = new File(ctxt.getFilesDir(), DownloadCheckService.UPDATE_BASEDIR);
             try {
-                InputStream is = ctxt.getAssets().open("book/contents.json");
+                InputStream is;
+
+                if(baseDir.exists()) {
+                    is = new FileInputStream(new File(baseDir, "contents.json"));
+                }
+                else {
+                    is = ctxt.getAssets().open("book/contents.json");
+                }
+
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 contents = gson.fromJson(reader, BookContents.class);
+                is.close();
+                if(baseDir.exists()) {
+                    contents.setBaseDir(baseDir);
+                }
                 EventBus.getDefault().post(new BookLoadedEvent(contents));
             } catch (IOException e) {
                 Log.e(getClass().getSimpleName(), "Exception parsing JSON", e);
@@ -71,5 +88,17 @@ public class ModelFragment extends Fragment {
 
     public SharedPreferences getPrefs() {
         return prefs;
+    }
+
+    @Override
+    public void onDetach() {
+        EventBus.getDefault().unregister(this);
+        super.onDetach();
+    }
+
+    public void onEventBackgroundThread(BookUpdatedEvent event) {
+        if(getActivity() != null) {
+            new LoadThread(getActivity()).start();
+        }
     }
 }
