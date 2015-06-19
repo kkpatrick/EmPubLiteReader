@@ -14,6 +14,9 @@ android {
 }
 repositories {
     mavenCentral()
+    maven {
+        url "https://repo.commonsware.com.s3.amazonaws.com"
+    }
 }
 dependencies {
     //compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -21,4 +24,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.squareup.retrofit:retrofit:1.8.0'
     compile 'com.android.support:support-v13:21.0.3'
+    compile 'com.commonsware.cwac:wakeful:1.0.+'
 }
