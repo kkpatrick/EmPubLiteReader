@@ -1,9 +1,14 @@
 package com.commonsware.empublite;
 
 import android.app.IntentService;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.Context;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import com.commonsware.cwac.wakeful.WakefulIntentService;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,6 +25,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import de.greenrobot.event.EventBus;
+import de.greenrobot.event.NoSubscriberEvent;
 import retrofit.RestAdapter;
 
 /**
@@ -29,11 +35,12 @@ import retrofit.RestAdapter;
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
-public class DownloadCheckService extends IntentService {
+public class DownloadCheckService extends WakefulIntentService {
 
     private static final String OUR_BOOK_DATE = "20120418";
     private static final String UPDATE_FILENAME = "book.zip";
     public static final String UPDATE_BASEDIR = "updates"; // the latest book update will reside
+    private static final int NOTIFY_ID = 1337;
 
     public DownloadCheckService() {
         super("DownloadCheckService");
@@ -67,7 +74,7 @@ public class DownloadCheckService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    protected void doWakefulWork(Intent intent) {
         try {
             String url = getUpdateUrl();
             if (url != null) {
@@ -77,7 +84,9 @@ public class DownloadCheckService extends IntentService {
                 updateDir.mkdirs();
                 unzip(book, updateDir);
                 book.delete();
+                EventBus.getDefault().register(this);
                 EventBus.getDefault().post(new BookUpdatedEvent());
+                EventBus.getDefault().unregister(this);
             }
         } catch( Exception e) {
             Log.e(getClass().getSimpleName(), "Exception downloading update", e);
@@ -121,5 +130,22 @@ public class DownloadCheckService extends IntentService {
             c.disconnect();
         }
         return output;
+    }
+
+    public void onEvent(NoSubscriberEvent event) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        Intent toLaunch = new Intent(this, EmPubLiteActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, toLaunch, 0);
+
+        builder.setAutoCancel(true).setContentIntent(pi)
+                .setContentTitle(getString(R.string.update_complete))
+                .setContentText(getString(R.string.update_desc))
+                .setSmallIcon(android.R.drawable.stat_sys_download_done)
+                .setTicker(getString(R.string.update_complete));
+
+        NotificationManager mgr =
+                ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE));
+
+        mgr.notify(NOTIFY_ID, builder.build());
     }
 }
